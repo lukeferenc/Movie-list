@@ -79,6 +79,63 @@ let movies = [
   ];
 
 
+//Returns information about selected movie
+app.get('/movies/:title', function (req, res) {
+res.send('That title does not exist in our database, sorry.')
+// res.json(movies.find((movie) =>
+// {return movie.title === req.params.title}));
+});
+
+//Returns a list of movies by Genre
+app.get('/movies/genres/:genre', function (req, res) {
+res.send('There are no movies yet, searching by genre will not help you!');
+// res.json(movies.find((movie) =>
+// {return movie.genre === req.params.genre}));
+});
+
+//Returns a page about a specific Director
+app.get('/directors/:name', function (req, res) {
+res.send('Try a different director');
+// res.json(movies.find((director) =>
+// {return director.name === req.params.name}));
+});
+
+//Sign up page - Will not need as sign up page will go to public folder (maybe)
+app.get('/sign-up.html', function(req, res) {
+res.sendFile('/public/sign-up.html', { root: __dirname });
+});
+
+//Login Page
+app.get('/login.html', function(req, res) {
+res.sendFile('/public/login.html', { root: __dirname });
+});
+
+//User account info
+app.get('/users/:userid', function(req, res) {
+res.send('Successful GET request for user account details');
+});
+
+//Delete account
+app.get('/users/:user-id/delete', function(req, res) {
+res.send('Successfully deleted user account');
+});
+
+//Edit account info
+app.get('/users/:user-id/edit', function(req, res) {
+res.send('You can edit your account details here');
+});
+
+//Add to favorites
+app.get('/users/:user-id/favorites/add-favorites', function(req, res) {
+res.send('Successfully added Movie Title to favorites');
+});
+
+//Remove from favorites
+app.get('/users/:user-id/favorites/remove-favorites', function(req, res) {
+res.send('Movie Title has been removed from favorites');
+});
+  
+  
 app.use(morgan('common'));
 
 app.use(bodyParser.json());
