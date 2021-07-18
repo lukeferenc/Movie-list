@@ -22,11 +22,27 @@ let movieSchema = mongoose.Schema({
     Password: {type: String, required: true},
     Email: {type: String, required: true},
     Birthday: Date,
-    FavoriteMovies: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Movie' }]
+    FavouriteMovies: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Movie' }]
   });
   
-  let Movie = mongoose.model('Movie', movieSchema);
-  let User = mongoose.model('User', userSchema);
+
+let directorSchema = mongoose.Schema({
+  Name: {type: String, required: true},
+  Bio: {type: String, required: true},
+  Birthday: Date,
+});
+
+let genreSchema = mongoose.Schema({
+    Name: { type: String, required: true},
+    Description:{ type: String, required: true}
+});
   
-  module.exports.Movie = Movie;
-  module.exports.User = User;
+let Movie = mongoose.model('Movie', movieSchema);
+let User = mongoose.model('User', userSchema);
+const Director = mongoose.model('Director', directorSchema);
+const Genre = mongoose.model('Genre', genreSchema)
+
+module.exports.Movie = Movie;
+module.exports.User = User;
+module.exports.Director = Director;
+module.exports.Genre = Genre;
