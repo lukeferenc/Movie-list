@@ -100,10 +100,12 @@ app.get("/genres/:Name", passport.authenticate('jwt', { session: false }), (req,
 
 
 //GET a page about a specific Director
-app.get("/director/:Name", passport.authenticate('jwt', { session: false }), (req,res) => {
-	Directors.findOne({ Name: req.params.Name })
-	.then((director) => {
-	  res.json(director);
+app.get("/directors/:Name", passport.authenticate('jwt', { session: false }), (req,res) => {
+	Movies.findOne({
+		"Director.Name":req.params.Name
+	})
+	.then((movie) => {
+	  res.json(movie.Director);
 	})
 	.catch((err) => {
 	  console.error(err);
