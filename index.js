@@ -195,6 +195,7 @@ app.delete("/users/:Username", passport.authenticate('jwt', { session: false }),
 				res.status(200).send(req.params.Username + "was deleted.");
 			} else {
 				res.status(400).send(req.params.Username + "was not found");	
+			}
 		})
 		.catch((err) => {
 			console.error(err);
