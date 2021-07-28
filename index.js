@@ -8,8 +8,6 @@ const Models = require("./models.js")
 
 const Movies = Models.Movie;
 const Users = Models.User;
-const Genres = Models.Genre;
-const Directors = Models.Director;
 const { check, validationResult } = require('express-validator');
 
 
