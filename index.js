@@ -229,9 +229,20 @@ app.delete("/users/:Username/Movies/:MovieID", passport.authenticate('jwt', { se
 });
 
 
-app.get('/users/:userId'), function(req, res) {
-	res.send('Getting a User')
-}
+app.get("/users/:Username",
+  function (req, res) {
+    Users.findOne({
+        Username: req.params.Username
+      })
+      .then(function (user) {
+        res.json(user);
+      })
+      .catch(function (err) {
+        console.error(err);
+        res.status(500).send("Error: " + err);
+      });
+  }
+);
 
 
 app.use(express.static('public'));
